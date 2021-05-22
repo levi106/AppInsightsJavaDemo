@@ -20,7 +20,7 @@ public class SleepControllerTest {
             .expectBody(String.class)
             .value(x -> {
                 long actual = Long.parseLong(x);
-                Assertions.assertThat(actual).isCloseTo(100, Assertions.within(50L));
+                Assertions.assertThat(actual).isGreaterThanOrEqualTo(100L);
             });
     }
 }
