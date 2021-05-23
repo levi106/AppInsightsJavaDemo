@@ -23,4 +23,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
+        context: src/frontapi
+        file: Dockerfile.large
         tags: crystalline407/large/frontapi:latest
