@@ -3,8 +3,11 @@ name: frontapi large
 on:
   push:
     branches: [ main ]
+    paths:
+    - 'src/frontapi/**'
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
     
 env:
   IMAGE_NAME: frontapi
