@@ -31,7 +31,7 @@ jobs:
       run: ./gradlew buildImage
     - name: Add Docker image tag
       run: |
-        docker tag slim/frontapi:latest ${IMAGE_NAME}:${IMAEG_TAG}
+        docker tag slim/frontapi:latest ${IMAGE_NAME}:${IMAGE_TAG}
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
