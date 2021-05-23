@@ -32,6 +32,6 @@ jobs:
         context: './src/frontapi'
         file: './src/frontapi/Dockerfile.large'
         push: true
-        tags: crystalline407/large/frontapi:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${IMAGE_NAME}:${IMAGE_TAG}
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
