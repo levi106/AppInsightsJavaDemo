@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: './src/frontapi'
-        file: Dockerfile.large
+        file: './src/frontapi/Dockerfile.large'
         push: true
         tags: crystalline407/large/frontapi:latest
     - name: Image digest
