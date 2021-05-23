@@ -1,8 +1,12 @@
 plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.beryx.runtime' version '1.12.4'
+	id 'com.bmuschko.docker-remote-api' version '7.0.0'
 	id 'java'
 }
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -21,6 +25,21 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+mainClassName = 'com.example.frontapi.FrontapiApplication'
+startScripts.mainClassName = 'org.springframework.boot.loader.JarLauncher'
+
 test {
 	useJUnitPlatform()
+}
+
+runtime {
+	options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+	modules = ['java.desktop', 'java.instrument', 'java.logging', 'java.management', 'java.naming', 'java.prefs', 'java.rmi', 'java.scripting', 'java.security.jgss', 'java.sql', 'java.xml', 'jdk.httpserver', 'jdk.jfr', 'jdk.management', 'jdk.unsupported']
+}
+
+task buildImage(type: DockerBuildImage) {
+	dependsOn 'runtime'
+	inputDir = project.getProjectDir()
+	dockerFile = project.file('Dockerfile.jlink')
+	images.add('slim/frontapi:latest')
 }
