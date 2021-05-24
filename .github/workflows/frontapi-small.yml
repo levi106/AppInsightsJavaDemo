@@ -1,15 +1,17 @@
-name: frontapi slim
+name: frontapi small
 
 on:
   push:
     branches: [ main ]
+    paths:
+    - 'src/frontapi/**'
   pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 env:
   IMAGE_NAME: frontapi
-  IMAGE_TAG: slim-latest
+  IMAGE_TAG: small-latest
 
 jobs:
   build:
@@ -31,7 +33,7 @@ jobs:
       run: ./gradlew buildImage
     - name: Add Docker image tag
       run: |
-        docker tag slim/frontapi:latest ${IMAGE_NAME}:${IMAGE_TAG}
+        docker tag frontapi:latest ${IMAGE_NAME}:${IMAGE_TAG}
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:

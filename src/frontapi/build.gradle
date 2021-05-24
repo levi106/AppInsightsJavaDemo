@@ -40,6 +40,6 @@ runtime {
 task buildImage(type: DockerBuildImage) {
 	dependsOn 'runtime'
 	inputDir = project.getProjectDir()
-	dockerFile = project.file('Dockerfile.jlink')
-	images.add('slim/frontapi:latest')
+	dockerFile = project.file('Dockerfile')
+	images.add('frontapi:latest')
 }
