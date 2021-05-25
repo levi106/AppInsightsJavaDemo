@@ -7,4 +7,4 @@ WORKDIR /app
 COPY build/image /app
 COPY --from=builder /lib/x86_64-linux-gnu/libz.so.1 /lib/x86_64-linux-gnu/libz.so.1
 ENTRYPOINT ["/app/bin/java"]
-CMD ["-classpath", "/app/lib/*", "org.springframework.boot.loader.JarLauncher"]
+CMD ["-Xmx128M", "-XX:+FlightRecorder", "-XX:+PrintFlagsFinal", "-classpath", "/app/lib/frontapi-0.0.1-SNAPSHOT.jar", "org.springframework.boot.loader.JarLauncher"]
