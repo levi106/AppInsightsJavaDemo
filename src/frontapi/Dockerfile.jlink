@@ -2,7 +2,7 @@ FROM gradle:jdk11 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle runtime
+RUN gradle build && gradle runtime
 
 FROM debian:stable-slim AS libz
 
